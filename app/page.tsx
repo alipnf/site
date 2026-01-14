@@ -288,7 +288,7 @@ export default function Home() {
 
         <div className="mt-8">
           <a
-            href="/alipnf_cv.pdf"
+            href="/cv/alipnf_cv.pdf"
             download
             className="inline-flex items-center justify-center px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-background transition-all rounded text-sm font-medium hover:shadow-[0_0_15px_rgba(var(--accent),0.3)]"
           >
