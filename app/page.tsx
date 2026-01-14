@@ -21,7 +21,8 @@ export default function Home() {
   const t = {
     id: {
       role: 'Frontend Developer',
-      bio: 'Mahasiswa Informatika tingkat akhir yang membangun antarmuka React dan Next.js yang aksesibel dengan fokus pada UI responsif, kode bersih, dan komponen reusable.',
+      bio: 'Mahasiswa Informatika tingkat akhir yang lagi open to work (alias: nganggur). Fokus bikin UI React/Next.js yang responsif & aksesibel, clean code, dan komponen reusable siap disuruh “benerin yang cuma 1px”.',
+
       nav: {
         projects: 'Proyek',
         experience: 'Pengalaman',
@@ -39,7 +40,7 @@ export default function Home() {
         contact: 'Kontak',
       },
       contactText:
-        'Mari bekerja sama atau sekadar mengobrol tentang pengembangan web. Hubungi saya di:',
+        'Hire me pls :33 atau minimal ngobrol soal web dev. Kamu bisa kontak aku di:',
       footer: {
         mode: 'mode',
         lang: 'bahasa',
@@ -105,7 +106,7 @@ export default function Home() {
     },
     en: {
       role: 'Frontend Developer',
-      bio: 'Final-year Informatics student building accessible React and Next.js interfaces with focus on responsive UI, clean code, and reusable components.',
+      bio: 'Final-year Informatics student currently open to work (aka unemployed). I build responsive & accessible React/Next.js UI with clean code and reusable components ready to fix the “just 1px” issues.',
       nav: {
         projects: 'Projects',
         experience: 'Experience',
@@ -123,7 +124,7 @@ export default function Home() {
         contact: 'Contact',
       },
       contactText:
-        "Let's work together or just chat about web development. Reach me at:",
+        'Hire me pls :33 or at least let’s talk web dev. Reach me at:',
       footer: {
         mode: 'mode',
         lang: 'language',
