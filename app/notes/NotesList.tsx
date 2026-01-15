@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Search, FileText, Calendar, Tag } from 'lucide-react';
+import { Search, Tag } from 'lucide-react';
 import { Note } from '@/lib/notes';
 
 type Props = {
@@ -34,51 +34,56 @@ export default function NotesList({ initialNotes }: Props) {
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {filteredNotes.map((note) => (
-          <Link
-            key={note.slug}
-            href={`/notes/${note.slug}`}
-            className="block p-4 rounded-lg border bg-card hover:border-foreground/50 transition-colors group h-full flex flex-col"
-          >
-            <div className="mb-2">
-              <h3 className="font-bold text-lg mb-1 group-hover:text-accent transition-colors flex items-center gap-2">
-                <FileText className="w-4 h-4" />
-                {note.title}
-              </h3>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                <Calendar className="w-3 h-3" />
-                <time dateTime={note.date}>
-                  {new Date(note.date).toLocaleDateString('id-ID', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-                {/* Optional: Show category/subcategory as a breadcrumb or badge if needed, 
-                    but user asked for clean look. Maybe just tags are enough. 
-                    Let's keep it simple as requested. */}
-              </div>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[0, 1, 2].map((columnIndex) => (
+          <div key={columnIndex} className="space-y-4">
+            {filteredNotes
+              .filter((_, i) => i % 3 === columnIndex)
+              .map((note) => (
+                <Link
+                  key={note.slug}
+                  href={`/notes/${note.slug}`}
+                  className="p-4 rounded-lg border bg-card hover:border-foreground/50 transition-colors group flex flex-col"
+                >
+                  <div className="mb-2">
+                    <h3 className="font-bold text-lg mb-1 group-hover:text-accent transition-colors">
+                      {note.title}
+                    </h3>
+                    <div className="text-xs text-muted-foreground mb-2">
+                      <time dateTime={note.date}>
+                        {new Date(note.date).toLocaleDateString('id-ID', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                    </div>
+                  </div>
 
-            <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-grow">
-              {note.excerpt}
-            </p>
+                  <p className="text-sm text-muted-foreground mb-4 grow">
+                    {note.excerpt}
+                  </p>
 
-            {note.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {note.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs bg-secondary px-2 py-1 rounded-md text-muted-foreground flex items-center gap-1"
-                  >
-                    <Tag className="w-3 h-3" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </Link>
+                  {note.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {note.tags.slice(0, 3).map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setSearchQuery(tag);
+                          }}
+                          className="text-xs bg-secondary px-2 py-1 rounded-md text-muted-foreground flex items-center gap-1 hover:bg-accent hover:text-accent-foreground transition-colors z-10"
+                        >
+                          <Tag className="w-3 h-3" />
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </Link>
+              ))}
+          </div>
         ))}
       </div>
 

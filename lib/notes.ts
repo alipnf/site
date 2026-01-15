@@ -11,8 +11,6 @@ export type Note = {
   tags: string[];
   content: string;
   excerpt: string;
-  category: string;
-  subcategory?: string;
 };
 
 export function getAllNotes(): Note[] {
@@ -39,14 +37,24 @@ export function getAllNotes(): Note[] {
         const relativePath = path.relative(NOTES_DIR, itemPath);
         const slug = relativePath.replace(/\.mdx?$/, '');
 
-        const parts = relativePath.split(path.sep);
-        // Category is the top-level folder name
-        const category = parts[0];
-        // Subcategory is the second folder name if it exists and is not the file itself
-        const subcategory = parts.length > 2 ? parts[1] : undefined;
+        // Extract H1 title if not present in frontmatter
+        let title = data.title;
+        let finalContent = content;
+
+        const h1Match = content.match(/^#\s+(.*)$/m);
+        if (h1Match) {
+          if (!title) {
+            title = h1Match[1];
+          }
+          // Always remove the H1 from the content to avoid redundancy
+          // Use regex that handles leading whitespace and multiline
+          finalContent = content.replace(/^\s*#\s+.*$/m, '').trim();
+        } else if (!title) {
+          title = path.basename(slug);
+        }
 
         // Extract excerpt (first 150 chars or first paragraph)
-        const plainContent = content
+        const plainContent = finalContent
           .replace(/#+\s.*?\n/g, '') // Remove headers
           .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
           .replace(/`{3}[\s\S]*?`{3}/g, '') // Remove code blocks
@@ -62,13 +70,11 @@ export function getAllNotes(): Note[] {
 
         notes.push({
           slug,
-          title: data.title || path.basename(slug),
+          title,
           date: data.created_at || new Date().toISOString(),
           tags: data.tags || [],
-          content,
+          content: finalContent,
           excerpt,
-          category,
-          subcategory,
         });
       }
     }
@@ -101,12 +107,24 @@ export function getNote(slug: string[]): Note | null {
   const fileContent = fs.readFileSync(finalPath, 'utf-8');
   const { data, content } = matter(fileContent);
 
-  // Category is the first part of the slug
-  const category = slug[0];
-  const subcategory = slug.length > 2 ? slug[1] : undefined;
+  // Extract H1 title if not present in frontmatter
+  let title = data.title;
+  let finalContent = content;
+
+  const h1Match = content.match(/^#\s+(.*)$/m);
+  if (h1Match) {
+    if (!title) {
+      title = h1Match[1];
+    }
+    // Always remove the H1 from the content to avoid redundancy
+    // Use regex that handles leading whitespace and multiline
+    finalContent = content.replace(/^\s*#\s+.*$/m, '').trim();
+  } else if (!title) {
+    title = slug[slug.length - 1];
+  }
 
   // Extract excerpt
-  const plainContent = content
+  const plainContent = finalContent
     .replace(/#+\s.*?\n/g, '') // Remove headers
     .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
     .replace(/`{3}[\s\S]*?`{3}/g, '') // Remove code blocks
@@ -122,12 +140,31 @@ export function getNote(slug: string[]): Note | null {
 
   return {
     slug: slugPath,
-    title: data.title || slug[slug.length - 1],
+    title,
     date: data.created_at || new Date().toISOString(),
     tags: data.tags || [],
-    content,
+    content: finalContent,
     excerpt,
-    category,
-    subcategory,
   };
+}
+
+export function getRelatedNotes(currentSlug: string, tags: string[]): Note[] {
+  if (!tags || tags.length === 0) return [];
+
+  const allNotes = getAllNotes();
+
+  return allNotes
+    .filter((note) => {
+      // Exclude current note
+      if (note.slug === currentSlug) return false;
+      // Check for matching tags
+      return note.tags.some((tag) => tags.includes(tag));
+    })
+    .sort((a, b) => {
+      // Sort by number of matching tags
+      const aMatches = a.tags.filter((tag) => tags.includes(tag)).length;
+      const bMatches = b.tags.filter((tag) => tags.includes(tag)).length;
+      return bMatches - aMatches;
+    })
+    .slice(0, 3);
 }

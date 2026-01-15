@@ -1,12 +1,17 @@
-import { getNote } from '@/lib/notes';
+import { getNote, getRelatedNotes } from '@/lib/notes';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-import { ChevronRight, Calendar, Tag } from 'lucide-react';
+import { ChevronRight, Calendar, Tag, FileText } from 'lucide-react';
 import Footer from '@/components/footer';
+import Pre from '@/components/mdx/Pre';
 
 type Props = {
   params: Promise<{ slug: string[] }>;
+};
+
+const components = {
+  pre: Pre,
 };
 
 export default async function NotePage(props: Props) {
@@ -16,6 +21,8 @@ export default async function NotePage(props: Props) {
   if (!note) {
     notFound();
   }
+
+  const relatedNotes = getRelatedNotes(note.slug, note.tags);
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-6">
@@ -65,11 +72,44 @@ export default async function NotePage(props: Props) {
                 prose-p:text-muted-foreground
                 prose-a:text-accent prose-a:no-underline hover:prose-a:underline
                 prose-code:text-primary prose-code:bg-secondary prose-code:px-1 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
-                prose-pre:bg-secondary prose-pre:text-secondary-foreground
+                prose-pre:!bg-transparent prose-pre:!text-foreground prose-pre:!p-0 prose-pre:!m-0 prose-pre:!rounded-none
             "
       >
-        <MDXRemote source={note.content} />
+        <MDXRemote source={note.content} components={components} />
       </article>
+
+      {relatedNotes.length > 0 && (
+        <div className="border-t pt-12 mb-12">
+          <h2 className="text-2xl font-bold mb-6">Catatan Terkait</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {relatedNotes.map((relatedNote) => (
+              <Link
+                key={relatedNote.slug}
+                href={`/notes/${relatedNote.slug}`}
+                className="block p-4 rounded-lg border bg-card hover:border-foreground/50 transition-colors group"
+              >
+                <h3 className="font-bold text-lg mb-2 group-hover:text-accent transition-colors flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  {relatedNote.title}
+                </h3>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                  {relatedNote.excerpt}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Calendar className="w-3 h-3" />
+                  <time dateTime={relatedNote.date}>
+                    {new Date(relatedNote.date).toLocaleDateString('id-ID', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       <Footer className="max-w-4xl" showLanguageToggle={false} />
     </div>
