@@ -1,49 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alipnf — Personal Website
 
-## Getting Started
+Personal portfolio built with [Next.js](https://nextjs.org),
+[Tailwind CSS](https://tailwindcss.com), and [MDX](https://mdxjs.com).
 
-First, run the development server:
+## Overview
+
+This repository contains the source code for my personal website, featuring:
+
+- **Portfolio**: Showcase of my projects and experience.
+- **Digital Garden**: A collection of notes and thoughts (MDX-based).
+- **Bilingual Support**: Content available in Indonesian (ID) and English (EN).
+
+## Tech Stack
+
+- **Framework**: [Next.js (App Router)](https://nextjs.org)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com)
+- **Components**: [shadcn/ui](https://ui.shadcn.com)
+- **Content**: [MDX](https://mdxjs.com) for notes
+- **Font**: [Inter](https://fonts.google.com/specimen/Inter) &
+  [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
+- **Icons**: [Lucide React](https://lucide.dev)
+
+## Project Structure
+
+- `app/`: Next.js App Router pages and layouts.
+- `components/`: Reusable UI components.
+- `content/`: Markdown/MDX files for notes.
+- `lib/`: Utility functions and data fetching logic.
+- `public/`: Static assets.
+
+## Installation
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/alipnf/site.git
+cd site
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+Start the development server:
 
-## Learn More
+```bash
+pnpm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+[MIT](LICENSE)
