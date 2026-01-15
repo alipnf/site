@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 type Language = 'id' | 'en';
 
 export default function Home() {
-  const [lang, setLang] = useState<Language>('id');
+  const [lang, setLang] = useState<Language>('en');
 
   const toggleLang = () => {
     setLang((prev) => (prev === 'id' ? 'en' : 'id'));
