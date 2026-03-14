@@ -1,6 +1,6 @@
 ---
 id: unable-to-lock-database
-aliases:
+aliases: 
 tags:
   - update
   - upgrade
@@ -8,7 +8,7 @@ tags:
   - error
   - linux
 author: Alipnf
-created_at: '2025-04-12'
+created_at: "2025-04-12"
 ---
 
 # Gagal update & upgrade pakage

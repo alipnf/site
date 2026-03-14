@@ -6,7 +6,7 @@ tags:
   - parallel-route
   - routing
 author: Alipnf
-created_at: '2025-05-07'
+created_at: "2025-05-07"
 ---
 
 # Parallel Routes

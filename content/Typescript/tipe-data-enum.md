@@ -5,7 +5,7 @@ tags:
   - typescript
   - enum
 author: Alipnf
-created_at: '2025-04-17'
+created_at: "2025-04-17"
 ---
 
 # Tipe Data Enum

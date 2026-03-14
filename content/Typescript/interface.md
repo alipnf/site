@@ -5,7 +5,7 @@ tags:
   - typescript
   - interface
 author: Alipnf
-created_at: '2025-04-18'
+created_at: "2025-04-18"
 ---
 
 # Interface

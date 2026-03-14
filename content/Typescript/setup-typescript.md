@@ -5,7 +5,7 @@ tags:
   - typescript
   - setup
 author: Alipnf
-created_at: '2025-03-29'
+created_at: "2025-03-29"
 ---
 
 # Setup TypeScript

@@ -5,7 +5,7 @@ tags:
   - typescript
   - generic
 author: Alipnf
-created_at: '2025-05-07'
+created_at: "2025-05-07"
 ---
 
 # Tipe Generic (Generic Types)
@@ -50,8 +50,8 @@ interface Box<T> {
 }
 
 // Penggunaan
-const numberBox: Box<number> = { value: 42 };
-const stringBox: Box<string> = { value: 'text' };
+const numberBox: Box<number> = {value: 42};
+const stringBox: Box<string> = {value: 'text'};
 ```
 
 ### 3. Class Generic
@@ -132,7 +132,7 @@ TypeScript menyediakan generic types bawaan seperti:
 Gunakan `extends` untuk membatasi tipe yang diperbolehkan:
 
 ```ts
-function logLength<T extends { length: number }>(item: T): void {
+function logLength<T extends {length: number}>(item: T): void {
   console.log(item.length); // Aman karena `length` pasti ada
 }
 ```

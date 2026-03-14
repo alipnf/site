@@ -5,7 +5,7 @@ tags:
   - typescript
   - object
 author: Alipnf
-created_at: '2025-04-16'
+created_at: "2025-04-16"
 ---
 
 # Tipe Data Object

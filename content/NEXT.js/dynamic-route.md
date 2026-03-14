@@ -5,7 +5,7 @@ tags:
   - routing
   - nextjs
 author: Alipnf
-created_at: '2025-04-19'
+created_at: "2025-04-19"
 ---
 
 # Dynamic Route

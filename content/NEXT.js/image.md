@@ -5,7 +5,7 @@ tags:
   - nextjs
   - image
 author: Alipnf
-created_at: '2025-05-04'
+created_at: "2025-05-04"
 ---
 
 # Image
@@ -59,7 +59,7 @@ export default function Home() {
 > juga harus diizinkan di file konfigurasi Next.js.
 
 ```ts
-import type { NextConfig } from 'next';
+import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   images: {

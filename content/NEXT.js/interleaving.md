@@ -7,7 +7,7 @@ tags:
   - client-components
   - interleaving
 author: Alipnf
-created_at: '2025-03-16'
+created_at: "2025-03-16"
 ---
 
 # **Interleaving dalam Server dan Client Components**

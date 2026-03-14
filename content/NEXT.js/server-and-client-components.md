@@ -6,7 +6,7 @@ tags:
   - server-components
   - client-components
 author: Alipnf
-created_at: '2025-03-22'
+created_at: "2025-03-22"
 ---
 
 # Server Components dan Client Components

@@ -6,7 +6,7 @@ tags:
   - server-actions
   - forms
 author: Alipnf
-created_at: '2025-05-10'
+created_at: "2025-05-10"
 ---
 
 # Server Action

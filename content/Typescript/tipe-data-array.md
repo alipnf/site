@@ -6,7 +6,7 @@ tags:
   - array
   - tuple
 author: Alipnf
-created_at: '2025-04-11'
+created_at: "2025-04-11"
 ---
 
 # Tipe Data Array

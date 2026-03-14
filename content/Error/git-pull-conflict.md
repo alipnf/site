@@ -5,7 +5,7 @@ tags:
   - error
   - git
 author: Alipnf
-created_at: '2025-03-30'
+created_at: "2025-03-30"
 ---
 
 # Git Pull Divergent Branches Issue

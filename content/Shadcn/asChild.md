@@ -7,7 +7,7 @@ tags:
   - typescript
   - ui
 author: Alipnf
-created_at: '2025-05-23'
+created_at: "2025-05-23"
 ---
 
 # asChild (shadcn UI)

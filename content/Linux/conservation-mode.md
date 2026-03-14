@@ -6,13 +6,14 @@ tags:
   - conservation
   - lenovo
 author: Alipnf
-created_at: '2025-04-15'
+created_at: "2025-04-15"
 ---
 
 # 🛡️ Conservation Mode (Lenovo)
 
 Mode ini membatasi charging sampai 60%, untuk rawat umur baterai di laptop
-Lenovo. Cocok kalau laptop sering nyolok ke charger terus.
+Lenovo.
+Cocok kalau laptop sering nyolok ke charger terus.
 
 untuk cek
 

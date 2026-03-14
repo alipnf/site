@@ -5,7 +5,7 @@ tags:
   - typescript
   - any
 author: Alipnf
-created_at: '2025-04-14'
+created_at: "2025-04-14"
 ---
 
 # Tipe Data any

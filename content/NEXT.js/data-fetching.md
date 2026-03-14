@@ -6,7 +6,7 @@ tags:
   - fetch
   - cache
 author: Alipnf
-created_at: '2025-05-06'
+created_at: "2025-05-06"
 ---
 
 # Data Fetching

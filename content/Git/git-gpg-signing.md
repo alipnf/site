@@ -6,7 +6,7 @@ tags:
   - gpg
   - signing
 author: Alipnf
-created_at: '2025-06-01'
+created_at: "2025-06-01"
 ---
 
 # GPG Commit Signing
@@ -78,6 +78,3 @@ git commit -S -m "Pesan commit dengan tanda tangan"
 ```
 
 ---
-
-Jika ingin saya bantu buat catatan tentang verifikasi commit signed, atau
-troubleshooting error GPG, silakan bilang saja.

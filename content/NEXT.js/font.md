@@ -5,7 +5,7 @@ tags:
   - nextjs
   - font
 author: Alipnf
-created_at: '2025-05-01'
+created_at: "2025-05-01"
 ---
 
 # Font di Next.js

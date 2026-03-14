@@ -5,7 +5,7 @@ tags:
   - typescript
   - alias
 author: Alipnf
-created_at: '2025-04-16'
+created_at: "2025-04-16"
 ---
 
 # Tipe Data Alias

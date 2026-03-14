@@ -5,7 +5,7 @@ tags:
   - linux
   - power profile
 author: Alipnf
-created_at: '2025-05-17'
+created_at: "2025-05-17"
 ---
 
 # Power Profile

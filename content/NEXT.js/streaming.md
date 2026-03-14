@@ -5,7 +5,7 @@ tags:
   - nextjs
   - streaming
 author: Alipnf
-created_at: '2025-05-13'
+created_at: "2025-05-13"
 ---
 
 # Streaming di Next.js
