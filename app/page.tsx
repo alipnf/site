@@ -111,8 +111,12 @@ export default function Home() {
       ],
       skills: {
         frontend: "Frontend",
+        programming: "Programming",
         styling: "Styling & UI",
-        tools: "Tools & Libraries",
+        stateManagement: "State Management",
+        backend: "Backend/BaaS",
+        api: "API",
+        tools: "Tools",
         soft: "Soft Skills",
       },
     },
@@ -207,8 +211,12 @@ export default function Home() {
       ],
       skills: {
         frontend: "Frontend",
+        programming: "Programming",
         styling: "Styling & UI",
-        tools: "Tools & Libraries",
+        stateManagement: "State Management",
+        backend: "Backend/BaaS",
+        api: "API",
+        tools: "Tools",
         soft: "Soft Skills",
       },
     },
@@ -217,9 +225,13 @@ export default function Home() {
   const content = t[lang];
 
   const skills = {
-    frontend: ["React", "Next.js", "TypeScript", "JavaScript"],
-    styling: ["Tailwind CSS", "Bootstrap", "shadcn/ui", "DaisyUI"],
-    tools: ["Zustand", "Supabase", "Firebase", "Git", "Figma"],
+    frontend: ["React", "Next.js"],
+    programming: ["JavaScript", "TypeScript"],
+    styling: ["Tailwind CSS", "Bootstrap", "shadcn/ui", "DaisyUI", "Preline"],
+    stateManagement: ["Zustand", "Redux"],
+    backend: ["Supabase", "Firebase"],
+    api: ["REST API Integration"],
+    tools: ["Git", "GitHub", "Postman", "Figma", "Taiga", "Trello"],
     soft: ["Communication", "Teamwork", "Problem-Solving", "Adaptability"],
   };
 
@@ -429,10 +441,70 @@ export default function Home() {
           </div>
           <div>
             <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
+              {content.skills.programming}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.programming.map((skill, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs border border-border rounded text-foreground"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
               {content.skills.styling}
             </p>
             <div className="flex flex-wrap gap-2">
               {skills.styling.map((skill, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs border border-border rounded text-foreground"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
+              {content.skills.stateManagement}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.stateManagement.map((skill, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs border border-border rounded text-foreground"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
+              {content.skills.backend}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.backend.map((skill, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs border border-border rounded text-foreground"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
+              {content.skills.api}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.api.map((skill, i) => (
                 <span
                   key={i}
                   className="px-2 py-1 text-xs border border-border rounded text-foreground"
