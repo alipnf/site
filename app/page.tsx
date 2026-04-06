@@ -1,191 +1,215 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import Footer from '@/components/footer';
+import Link from "next/link";
+import { useState } from "react";
+import Footer from "@/components/footer";
 
-type Language = 'id' | 'en';
+type Language = "id" | "en";
 
 export default function Home() {
-  const [lang, setLang] = useState<Language>('en');
+  const [lang, setLang] = useState<Language>("en");
 
   const toggleLang = () => {
-    setLang((prev) => (prev === 'id' ? 'en' : 'id'));
+    setLang((prev) => (prev === "id" ? "en" : "id"));
   };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   const t = {
     id: {
-      role: 'Frontend Developer',
-      bio: 'Mahasiswa Informatika tingkat akhir yang lagi open to work (alias: nganggur). Fokus bikin UI React/Next.js yang responsif & aksesibel, clean code, dan komponen reusable siap disuruh “benerin yang cuma 1px”.',
+      role: "Frontend Developer",
+      bio: "Mahasiswa Informatika tingkat akhir yang lagi open to work (alias: nganggur). Fokus bikin UI React/Next.js yang responsif & aksesibel, clean code, dan komponen reusable siap disuruh “benerin yang cuma 1px”.",
 
       nav: {
-        projects: 'Proyek',
-        experience: 'Pengalaman',
-        education: 'Pendidikan',
-        skills: 'Keahlian',
-        contact: 'Kontak',
-        notes: 'Catatan',
+        projects: "Proyek",
+        experience: "Pengalaman",
+        education: "Pendidikan",
+        skills: "Keahlian",
+        contact: "Kontak",
+        notes: "Catatan",
       },
-      downloadCv: 'Unduh CV',
+      downloadCv: "Unduh CV",
       headers: {
-        projects: 'Proyek',
-        experience: 'Pengalaman Kerja',
-        education: 'Pendidikan',
-        skills: 'Keahlian',
-        contact: 'Kontak',
+        projects: "Proyek",
+        experience: "Pengalaman Kerja",
+        education: "Pendidikan",
+        skills: "Keahlian",
+        contact: "Kontak",
       },
       contactText:
-        'Hire me pls :33 atau minimal ngobrol soal web dev. Kamu bisa kontak aku di:',
+        "Hire me pls :33 atau minimal ngobrol soal web dev. Kamu bisa kontak aku di:",
       footer: {
-        mode: 'mode',
-        lang: 'bahasa',
+        mode: "mode",
+        lang: "bahasa",
       },
       projects: [
         {
-          title: 'Isyara',
-          desc: 'Aplikasi belajar BISINDO dengan deteksi tangan real-time dan klasifikasi gerakan on-device menggunakan TensorFlow.js & MediaPipe. Fitur unit pembelajaran terstruktur, gamifikasi (XP/level), mode kuis, dan autentikasi Supabase.',
-          url: 'https://github.com/alipnf/Isyara-FE',
+          title: "Isyara",
+          desc: "Aplikasi belajar BISINDO dengan deteksi tangan real-time dan klasifikasi gerakan on-device menggunakan TensorFlow.js & MediaPipe. Fitur unit pembelajaran terstruktur, gamifikasi (XP/level), mode kuis, dan autentikasi Supabase.",
+          url: "https://github.com/alipnf/Isyara-FE",
         },
         {
-          title: 'Planify',
-          desc: 'Aplikasi penjadwalan kuliah dengan pembuatan jadwal manual dan bantuan AI. Buat, edit, dan impor mata kuliah, lalu buat jadwal yang optimal. Tautan jadwal yang dapat dibagikan didukung oleh Next.js dan Zustand.',
-          url: 'https://github.com/alipnf/planify',
+          title: "Planify",
+          desc: "Aplikasi penjadwalan kuliah dengan pembuatan jadwal manual dan bantuan AI. Buat, edit, dan impor mata kuliah, lalu buat jadwal yang optimal. Tautan jadwal yang dapat dibagikan didukung oleh Next.js dan Zustand.",
+          url: "https://github.com/alipnf/planify",
         },
         {
-          title: 'Blue Bay',
-          desc: 'Platform e-commerce full-stack dengan penemuan produk, keranjang belanja, alur checkout, dan pelacakan pesanan. Termasuk dasbor admin untuk manajemen transaksi dan produk. Dibangun dengan React dan DaisyUI.',
-          url: 'https://github.com/alipnf/blueBay',
+          title: "Blue Bay",
+          desc: "Platform e-commerce full-stack dengan penemuan produk, keranjang belanja, alur checkout, dan pelacakan pesanan. Termasuk dasbor admin untuk manajemen transaksi dan produk. Dibangun dengan React dan DaisyUI.",
+          url: "https://github.com/alipnf/blueBay",
         },
         {
-          title: 'Banobakehouse',
-          desc: 'Website informasi toko roti dengan autentikasi, panel admin untuk manajemen produk/kategori, dan fitur wishlist.',
-          url: 'https://github.com/alipnf/banobakehouse',
+          title: "Banobakehouse",
+          desc: "Website informasi toko roti dengan autentikasi, panel admin untuk manajemen produk/kategori, dan fitur wishlist.",
+          url: "https://github.com/alipnf/banobakehouse",
         },
       ],
       experience: [
         {
-          title: 'Frontend Developer (Intern)',
-          company: 'PT Digital House Nusantara',
-          period: 'Jan 2025 – Apr 2025',
+          title: "Frontend Developer Intern",
+          company: "PT WIR ASIA Tbk",
+          period: "Feb 2026 – Mei 2026",
           details: [
-            'Mengembangkan dan memelihara UI berbasis React untuk website perusahaan dan dasbor admin berbasis peran',
-            'Menerjemahkan desain Figma menjadi antarmuka responsif; memastikan konsistensi di desktop/tablet/seluler',
-            'Membangun komponen UI yang dapat digunakan kembali',
-            'Mengintegrasikan REST API dengan tim backend',
+            "Membangun antarmuka responsif mobile-first untuk halaman dasbor internal menggunakan Next.js dan TypeScript.",
+            "Mengembangkan komponen UI yang dapat digunakan kembali (formulir, tabel, indikator status) untuk menjaga konsistensi dan kemudahan perawatan dasbor.",
+            "Mengintegrasikan REST API untuk menampilkan dan memperbarui data konfigurasi dan kesehatan sistem, menangani status loading, error, dan empty.",
+            "Berkolaborasi dengan engineer backend dan tim produk untuk memperjelas kebutuhan, menyempurnakan UX, dan memastikan pengiriman fitur yang andal.",
+            "Bekerja dengan Git (branching, pull requests, code reviews) dalam lingkungan tim untuk menjaga kualitas dan stabilitas kode.",
+          ],
+        },
+        {
+          title: "Frontend Developer Intern",
+          company: "PT Digital House Nusantara",
+          period: "Jan 2025 – Apr 2025",
+          details: [
+            "Mengembangkan dan memelihara UI berbasis React untuk website perusahaan dan dasbor admin berbasis peran",
+            "Menerjemahkan desain Figma menjadi antarmuka responsif; memastikan konsistensi di desktop/tablet/seluler",
+            "Membangun komponen UI yang dapat digunakan kembali",
+            "Mengintegrasikan REST API dengan tim backend",
           ],
         },
       ],
       education: [
         {
-          school: 'Universitas Muria Kudus',
-          degree: 'S1 Teknik Informatika',
-          period: '2022 – Sekarang',
-          gpa: 'IPK: 3.89 / 4.00',
+          school: "Universitas Muria Kudus",
+          degree: "S1 Teknik Informatika",
+          period: "2022 – Sekarang",
+          gpa: "IPK: 3.89 / 4.00",
           highlights:
-            'Mata kuliah relevan: Pemrograman Web, Web Service, Sistem Basis Data, Rekayasa Perangkat Lunak, IMK, Struktur Data, AI, Cloud Computing',
+            "Mata kuliah relevan: Pemrograman Web, Web Service, Sistem Basis Data, Rekayasa Perangkat Lunak, IMK, Struktur Data, AI, Cloud Computing",
         },
         {
-          school: 'MSIB Batch 7 — Alterra Academy',
-          degree: 'ReactJS Mastery for Green Tech Front-End Engineers',
-          period: 'Sep 2024 – Des 2024',
+          school: "MSIB Batch 7 — Alterra Academy",
+          degree: "ReactJS Mastery for Green Tech Front-End Engineers",
+          period: "Sep 2024 – Des 2024",
           highlights:
-            'Memimpin tim frontend pada proyek capstone, menetapkan standar pengembangan, mengelola tugas melalui Trello, mengonversi desain Figma menjadi antarmuka siap produksi',
+            "Memimpin tim frontend pada proyek capstone, menetapkan standar pengembangan, mengelola tugas melalui Trello, mengonversi desain Figma menjadi antarmuka siap produksi",
         },
       ],
       skills: {
-        frontend: 'Frontend',
-        styling: 'Styling & UI',
-        tools: 'Tools & Libraries',
-        soft: 'Soft Skills',
+        frontend: "Frontend",
+        styling: "Styling & UI",
+        tools: "Tools & Libraries",
+        soft: "Soft Skills",
       },
     },
     en: {
-      role: 'Frontend Developer',
-      bio: 'Final-year Informatics student currently open to work (aka unemployed). I build responsive & accessible React/Next.js UI with clean code and reusable components ready to fix the “just 1px” issues.',
+      role: "Frontend Developer",
+      bio: "Final-year Informatics student currently open to work (aka unemployed). I build responsive & accessible React/Next.js UI with clean code and reusable components ready to fix the “just 1px” issues.",
       nav: {
-        projects: 'Projects',
-        experience: 'Experience',
-        education: 'Education',
-        skills: 'Skills',
-        contact: 'Contact',
-        notes: 'Notes',
+        projects: "Projects",
+        experience: "Experience",
+        education: "Education",
+        skills: "Skills",
+        contact: "Contact",
+        notes: "Notes",
       },
-      downloadCv: 'Download CV',
+      downloadCv: "Download CV",
       headers: {
-        projects: 'Projects',
-        experience: 'Work Experience',
-        education: 'Education',
-        skills: 'Skills',
-        contact: 'Contact',
+        projects: "Projects",
+        experience: "Work Experience",
+        education: "Education",
+        skills: "Skills",
+        contact: "Contact",
       },
       contactText:
-        'Hire me pls :33 or at least let’s talk web dev. Reach me at:',
+        "Hire me pls :33 or at least let’s talk web dev. Reach me at:",
       footer: {
-        mode: 'mode',
-        lang: 'language',
+        mode: "mode",
+        lang: "language",
       },
       projects: [
         {
-          title: 'Isyara',
-          desc: 'BISINDO learning app with real-time hand detection and on-device gesture classification using TensorFlow.js & MediaPipe. Features structured learning units, gamification (XP/levels), quiz mode, and Supabase authentication.',
-          url: 'https://github.com/alipnf/Isyara-FE',
+          title: "Isyara",
+          desc: "BISINDO learning app with real-time hand detection and on-device gesture classification using TensorFlow.js & MediaPipe. Features structured learning units, gamification (XP/levels), quiz mode, and Supabase authentication.",
+          url: "https://github.com/alipnf/Isyara-FE",
         },
         {
-          title: 'Planify',
-          desc: 'Course scheduling web app with manual and AI-assisted schedule generation. Create, edit, and import courses, then generate optimized timetables. Shareable schedule links powered by Next.js and Zustand.',
-          url: 'https://github.com/alipnf/planify',
+          title: "Planify",
+          desc: "Course scheduling web app with manual and AI-assisted schedule generation. Create, edit, and import courses, then generate optimized timetables. Shareable schedule links powered by Next.js and Zustand.",
+          url: "https://github.com/alipnf/planify",
         },
         {
-          title: 'Blue Bay',
-          desc: 'Full-stack e-commerce platform with product discovery, shopping cart, checkout flow, and order tracking. Includes admin dashboard for transaction and product management. Built with React and DaisyUI.',
-          url: 'https://github.com/alipnf/blueBay',
+          title: "Blue Bay",
+          desc: "Full-stack e-commerce platform with product discovery, shopping cart, checkout flow, and order tracking. Includes admin dashboard for transaction and product management. Built with React and DaisyUI.",
+          url: "https://github.com/alipnf/blueBay",
         },
         {
-          title: 'Banobakehouse',
-          desc: 'Bakery informational website with authentication, admin panel for product/category management, and wishlist feature.',
-          url: 'https://github.com/alipnf/banobakehouse',
+          title: "Banobakehouse",
+          desc: "Bakery informational website with authentication, admin panel for product/category management, and wishlist feature.",
+          url: "https://github.com/alipnf/banobakehouse",
         },
       ],
       experience: [
         {
-          title: 'Frontend Developer (Intern)',
-          company: 'PT Digital House Nusantara',
-          period: 'Jan 2025 – Apr 2025',
+          title: "Frontend Developer Intern",
+          company: "PT WIR ASIA Tbk",
+          period: "Feb 2026 – Mei 2026",
           details: [
-            'Developed and maintained React-based UI for corporate website and role-based admin dashboard',
-            'Translated Figma designs into responsive interfaces; ensured consistency across desktop/tablet/mobile',
-            'Built reusable UI components to improve consistency and accelerate feature delivery',
-            'Integrated REST APIs with backend team and handled loading/error states',
+            "Built mobile-first, responsive interfaces for internal dashboard pages using Next.js and TypeScript.",
+            "Developed reusable UI components (forms, tables, status indicators) to keep the dashboard consistent and easy to maintain.",
+            "Integrated REST APIs to display and update configuration and system health data, handling loading, error, and empty states.",
+            "Collaborated with backend engineers and product team to clarify requirements, refine UX, and ensure reliable feature delivery.",
+            "Worked with Git (branching, pull requests, code reviews) in a team environment to maintain code quality and stability.",
+          ],
+        },
+        {
+          title: "Frontend Developer Intern",
+          company: "PT Digital House Nusantara",
+          period: "Jan 2025 – Apr 2025",
+          details: [
+            "Developed and maintained React-based UI for corporate website and role-based admin dashboard",
+            "Translated Figma designs into responsive interfaces; ensured consistency across desktop/tablet/mobile",
+            "Built reusable UI components to improve consistency and accelerate feature delivery",
+            "Integrated REST APIs with backend team and handled loading/error states",
           ],
         },
       ],
       education: [
         {
-          school: 'Universitas Muria Kudus',
+          school: "Universitas Muria Kudus",
           degree: "Bachelor's Degree in Informatics Engineering",
-          period: '2022 – Present',
-          gpa: 'GPA: 3.89 / 4.00',
+          period: "2022 – Present",
+          gpa: "GPA: 3.89 / 4.00",
           highlights:
-            'Relevant coursework: Web Programming, Web Service, Database Systems, Software Engineering, HCI, Data Structures, AI, Cloud Computing',
+            "Relevant coursework: Web Programming, Web Service, Database Systems, Software Engineering, HCI, Data Structures, AI, Cloud Computing",
         },
         {
-          school: 'MSIB Batch 7 — Alterra Academy',
-          degree: 'ReactJS Mastery for Green Tech Front-End Engineers',
-          period: 'Sep 2024 – Dec 2024',
+          school: "MSIB Batch 7 — Alterra Academy",
+          degree: "ReactJS Mastery for Green Tech Front-End Engineers",
+          period: "Sep 2024 – Dec 2024",
           highlights:
-            'Led frontend team on capstone project, set development standards, managed tasks via Trello, converted Figma designs to production-ready interfaces',
+            "Led frontend team on capstone project, set development standards, managed tasks via Trello, converted Figma designs to production-ready interfaces",
         },
       ],
       skills: {
-        frontend: 'Frontend',
-        styling: 'Styling & UI',
-        tools: 'Tools & Libraries',
-        soft: 'Soft Skills',
+        frontend: "Frontend",
+        styling: "Styling & UI",
+        tools: "Tools & Libraries",
+        soft: "Soft Skills",
       },
     },
   };
@@ -193,10 +217,10 @@ export default function Home() {
   const content = t[lang];
 
   const skills = {
-    frontend: ['React', 'Next.js', 'TypeScript', 'JavaScript'],
-    styling: ['Tailwind CSS', 'Bootstrap', 'shadcn/ui', 'DaisyUI'],
-    tools: ['Zustand', 'Supabase', 'Firebase', 'Git', 'Figma'],
-    soft: ['Communication', 'Teamwork', 'Problem-Solving', 'Adaptability'],
+    frontend: ["React", "Next.js", "TypeScript", "JavaScript"],
+    styling: ["Tailwind CSS", "Bootstrap", "shadcn/ui", "DaisyUI"],
+    tools: ["Zustand", "Supabase", "Firebase", "Git", "Figma"],
+    soft: ["Communication", "Teamwork", "Problem-Solving", "Adaptability"],
   };
 
   return (
@@ -220,7 +244,7 @@ export default function Home() {
           <ul className="flex flex-col gap-2 text-sm font-mono text-muted-foreground">
             <li>
               <button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => scrollToSection("projects")}
                 className="hover:text-accent transition-colors flex items-center gap-3 group"
               >
                 <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">
@@ -231,7 +255,7 @@ export default function Home() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('experience')}
+                onClick={() => scrollToSection("experience")}
                 className="hover:text-accent transition-colors flex items-center gap-3 group"
               >
                 <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">
@@ -242,7 +266,7 @@ export default function Home() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('education')}
+                onClick={() => scrollToSection("education")}
                 className="hover:text-accent transition-colors flex items-center gap-3 group"
               >
                 <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">
@@ -253,7 +277,7 @@ export default function Home() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('skills')}
+                onClick={() => scrollToSection("skills")}
                 className="hover:text-accent transition-colors flex items-center gap-3 group"
               >
                 <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">
@@ -264,7 +288,7 @@ export default function Home() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection("contact")}
                 className="hover:text-accent transition-colors flex items-center gap-3 group"
               >
                 <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">
