@@ -61,6 +61,9 @@ export function PageTransition({ children }: PropsWithChildren) {
     if (hash) {
       window.requestAnimationFrame(() => {
         document.getElementById(decodeURIComponent(hash))?.scrollIntoView({ block: "start", behavior: "auto" });
+        if (window.location.pathname === "/") {
+          window.history.replaceState(null, "", "/");
+        }
       });
       return;
     }

@@ -1,6 +1,7 @@
 import { motion, type Variants } from "motion/react";
+import { scrollToSection } from "@/lib/scroll";
 import Link from "next/link";
-import type { PropsWithChildren } from "react";
+import type { MouseEvent, PropsWithChildren } from "react";
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 34 },
@@ -59,6 +60,21 @@ export function ButtonLink({ children, className = "", href, variant = "ghost" }
       ? "border-text-primary bg-text-primary !text-[#050505] hover:bg-transparent hover:!text-text-primary"
       : "hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]";
   const linkClass = `border border-border-strong px-6 py-4 font-mono text-xs uppercase tracking-[0.1em] transition-colors duration-300 ease-out ${variantClass} ${className}`;
+
+  if (href.startsWith("#")) {
+    return (
+      <a
+        href={href}
+        className={linkClass}
+        onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
+          scrollToSection(href.slice(1));
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
 
   if (href.startsWith("/") && !href.startsWith("/cv/")) {
     return (

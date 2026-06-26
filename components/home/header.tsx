@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect } from "react";
+import { scrollToSection } from "@/lib/scroll";
+import { type MouseEvent, useEffect } from "react";
 import { Container } from "./ui";
 
 const links = [
@@ -13,6 +14,12 @@ const links = [
 
 export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolean; navOpen: boolean; setNavOpen: (open: boolean) => void }) {
   const navClass = "font-mono text-xs uppercase tracking-[0.1em] text-text-secondary transition-colors hover:text-text-primary";
+
+  const handleSectionClick = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setNavOpen(false);
+    scrollToSection(href.slice(1));
+  };
 
   useEffect(() => {
     document.body.style.overflow = navOpen ? "hidden" : "";
@@ -44,7 +51,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
         }`}
       >
       <Container className="flex items-center justify-between">
-        <a href="#top" className="text-[22px] font-bold tracking-[-0.04em]" onClick={() => setNavOpen(false)}>
+        <a href="#top" className="text-[22px] font-bold tracking-[-0.04em]" onClick={handleSectionClick("#top")}>
           alipnf
         </a>
         <button
@@ -61,11 +68,11 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
 
         <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
           {links.map((link) => (
-            <a className={`nav-underline ${navClass}`} href={link.href} key={link.href}>
+            <a className={`nav-underline ${navClass}`} href={link.href} key={link.href} onClick={handleSectionClick(link.href)}>
               {link.label}
             </a>
           ))}
-          <a className="border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:text-[#050505]" href="/cv/alipnf_cv.pdf">
+          <a className="border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]" href="/cv/alipnf_cv.pdf">
             Download CV
           </a>
         </nav>
@@ -89,7 +96,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
                   className={navClass}
                   href={link.href}
                   key={link.href}
-                  onClick={() => setNavOpen(false)}
+                  onClick={handleSectionClick(link.href)}
                 >
                   {link.label}
                 </motion.a>
@@ -98,7 +105,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
                 initial={{ opacity: 0, x: 18 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.24, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="w-fit border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em]"
+                className="w-fit border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]"
                 href="/cv/alipnf_cv.pdf"
                 onClick={() => setNavOpen(false)}
               >
