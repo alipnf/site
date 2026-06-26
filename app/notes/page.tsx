@@ -1,39 +1,57 @@
-import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
-import Footer from '@/components/footer';
-import { getAllNotes } from '@/lib/notes';
-import NotesList from './NotesList';
+import NotesList from "./NotesList";
+import { getAllNotes } from "@/lib/notes";
+import { siteConfig } from "@/lib/site";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-export default async function Notes() {
+const description = "Technical notes about frontend development, Linux, Git, PostgreSQL, TypeScript, and troubleshooting.";
+
+export const metadata: Metadata = {
+  title: "Notes",
+  description,
+  alternates: {
+    canonical: "/notes",
+  },
+  openGraph: {
+    title: "Notes | Alipnf",
+    description,
+    url: "/notes",
+    siteName: siteConfig.name,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "Alipnf technical notes archive" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notes | Alipnf",
+    description,
+    images: [siteConfig.ogImage],
+  },
+};
+
+export default function NotesPage() {
   const notes = getAllNotes();
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="mb-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
-        >
-          <ChevronRight className="w-4 h-4 rotate-180" />
-          Kembali ke Beranda
+    <main className="min-h-screen bg-bg-primary text-text-primary">
+      <div className="bg-grid" />
+      <div className="bg-noise" />
+      <section className="relative z-[2] mx-auto w-full max-w-[1280px] px-5 py-10 sm:px-8 md:py-16">
+        <Link href="/#notes" className="mb-14 inline-flex font-mono text-xs uppercase tracking-[0.14em] text-text-muted transition hover:text-text-primary">
+          Back / Notes Section
         </Link>
-        <h1 className="text-4xl font-bold mb-4">Catatan</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mb-8">
-          Isinya yapping saya doang. CMIIW kalau nemu yang ngaco, lempar
-          Issue/PR aja di{' '}
-          <Link
-            href="https://github.com/alipnf/site"
-            className="text-accent hover:underline"
-          >
-            GitHub
-          </Link>{' '}
-          :))
-        </p>
+
+        <div className="mb-14 grid gap-8 border-y border-border-soft py-10 lg:grid-cols-[1fr_0.65fr] lg:items-end">
+          <div>
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-text-muted">Notes Archive</p>
+            <h1 className="max-w-4xl text-[clamp(3.2rem,9vw,8.8rem)] font-bold leading-[0.85] tracking-[-0.08em]">Technical Notes</h1>
+          </div>
+          <p className="max-w-xl text-base leading-7 text-text-secondary md:text-lg">
+            Catatan teknis seputar frontend, Linux, Git, PostgreSQL, TypeScript, dan debugging. Beberapa isinya masih berupa learning log, jadi CMIIW kalau ada yang ngaco.
+          </p>
+        </div>
 
         <NotesList initialNotes={notes} />
-      </div>
-
-      <Footer className="max-w-4xl mt-20" showLanguageToggle={false} />
-    </div>
+      </section>
+    </main>
   );
 }

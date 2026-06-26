@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
 
-const NOTES_DIR = path.join(process.cwd(), 'content');
+const NOTES_DIR = path.join(process.cwd(), "content");
 
 export type Note = {
   slug: string;
@@ -12,6 +12,52 @@ export type Note = {
   content: string;
   excerpt: string;
 };
+
+export type AdjacentNotes = {
+  previous: Note | null;
+  next: Note | null;
+};
+
+function readNoteFile(filePath: string, slug: string): Note {
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(fileContent);
+
+  let title = typeof data.title === "string" ? data.title : "";
+  let finalContent = content;
+  const h1Match = content.match(/^#\s+(.*)$/m);
+
+  if (h1Match) {
+    title ||= h1Match[1];
+    finalContent = content.replace(/^\s*#\s+.*$/m, "").trim();
+  }
+
+  if (!title) {
+    title = path.basename(slug);
+  }
+
+  const plainContent = finalContent
+    .replace(/#+\s.*?\n/g, "")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/`{3}[\s\S]*?`{3}/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/(\*\*|__)(.*?)\1/g, "$2")
+    .replace(/(\*|_)(.*?)\1/g, "$2")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/>\s+/g, "")
+    .trim();
+
+  const excerpt = plainContent.slice(0, 150) + (plainContent.length > 150 ? "..." : "");
+
+  return {
+    slug,
+    title,
+    date: typeof data.created_at === "string" ? data.created_at : new Date().toISOString(),
+    tags: Array.isArray(data.tags) ? data.tags : [],
+    content: finalContent,
+    excerpt,
+  };
+}
 
 export function getAllNotes(): Note[] {
   if (!fs.existsSync(NOTES_DIR)) {
@@ -29,142 +75,85 @@ export function getAllNotes(): Note[] {
 
       if (stat.isDirectory()) {
         traverseDirectory(itemPath);
-      } else if (item.endsWith('.md') || item.endsWith('.mdx')) {
-        const fileContent = fs.readFileSync(itemPath, 'utf-8');
-        const { data, content } = matter(fileContent);
-
-        // Calculate slug relative to NOTES_DIR
-        const relativePath = path.relative(NOTES_DIR, itemPath);
-        const slug = relativePath.replace(/\.mdx?$/, '');
-
-        // Extract H1 title if not present in frontmatter
-        let title = data.title;
-        let finalContent = content;
-
-        const h1Match = content.match(/^#\s+(.*)$/m);
-        if (h1Match) {
-          if (!title) {
-            title = h1Match[1];
-          }
-          // Always remove the H1 from the content to avoid redundancy
-          // Use regex that handles leading whitespace and multiline
-          finalContent = content.replace(/^\s*#\s+.*$/m, '').trim();
-        } else if (!title) {
-          title = path.basename(slug);
-        }
-
-        // Extract excerpt (first 150 chars or first paragraph)
-        const plainContent = finalContent
-          .replace(/#+\s.*?\n/g, '') // Remove headers
-          .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
-          .replace(/`{3}[\s\S]*?`{3}/g, '') // Remove code blocks
-          .replace(/`([^`]+)`/g, '$1') // Remove inline code
-          .replace(/(\*\*|__)(.*?)\1/g, '$2') // Remove bold
-          .replace(/(\*|_)(.*?)\1/g, '$2') // Remove italics
-          .replace(/^\s*[-*+]\s+/gm, '') // Remove list items
-          .replace(/^\s*\d+\.\s+/gm, '') // Remove numbered lists
-          .replace(/>\s+/g, '') // Remove blockquotes
-          .trim();
-        const excerpt =
-          plainContent.slice(0, 150) + (plainContent.length > 150 ? '...' : '');
-
-        notes.push({
-          slug,
-          title,
-          date: data.created_at || new Date().toISOString(),
-          tags: data.tags || [],
-          content: finalContent,
-          excerpt,
-        });
+        continue;
       }
+
+      if (!item.endsWith(".md") && !item.endsWith(".mdx")) {
+        continue;
+      }
+
+      const relativePath = path.relative(NOTES_DIR, itemPath);
+      const slug = relativePath.replace(/\.mdx?$/, "");
+
+      notes.push(readNoteFile(itemPath, slug));
     }
   }
 
   traverseDirectory(NOTES_DIR);
 
-  // Sort by date descending
-  return notes.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return notes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getNote(slug: string[]): Note | null {
-  if (!slug || slug.length === 0) return null;
-
-  const slugPath = slug.join('/');
-  const filePath = path.join(NOTES_DIR, `${slugPath}.md`);
-
-  // Try .md first, then .mdx
-  let finalPath = filePath;
-  if (!fs.existsSync(finalPath)) {
-    finalPath = path.join(NOTES_DIR, `${slugPath}.mdx`);
-  }
-
-  if (!fs.existsSync(finalPath)) {
+  if (!slug.length) {
     return null;
   }
 
-  const fileContent = fs.readFileSync(finalPath, 'utf-8');
-  const { data, content } = matter(fileContent);
+  const slugPath = slug.join("/");
+  const markdownPath = path.join(NOTES_DIR, `${slugPath}.md`);
+  const mdxPath = path.join(NOTES_DIR, `${slugPath}.mdx`);
+  const filePath = fs.existsSync(markdownPath) ? markdownPath : mdxPath;
 
-  // Extract H1 title if not present in frontmatter
-  let title = data.title;
-  let finalContent = content;
-
-  const h1Match = content.match(/^#\s+(.*)$/m);
-  if (h1Match) {
-    if (!title) {
-      title = h1Match[1];
-    }
-    // Always remove the H1 from the content to avoid redundancy
-    // Use regex that handles leading whitespace and multiline
-    finalContent = content.replace(/^\s*#\s+.*$/m, '').trim();
-  } else if (!title) {
-    title = slug[slug.length - 1];
+  if (!fs.existsSync(filePath)) {
+    return null;
   }
 
-  // Extract excerpt
-  const plainContent = finalContent
-    .replace(/#+\s.*?\n/g, '') // Remove headers
-    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
-    .replace(/`{3}[\s\S]*?`{3}/g, '') // Remove code blocks
-    .replace(/`([^`]+)`/g, '$1') // Remove inline code
-    .replace(/(\*\*|__)(.*?)\1/g, '$2') // Remove bold
-    .replace(/(\*|_)(.*?)\1/g, '$2') // Remove italics
-    .replace(/^\s*[-*+]\s+/gm, '') // Remove list items
-    .replace(/^\s*\d+\.\s+/gm, '') // Remove numbered lists
-    .replace(/>\s+/g, '') // Remove blockquotes
-    .trim();
-  const excerpt =
-    plainContent.slice(0, 150) + (plainContent.length > 150 ? '...' : '');
-
-  return {
-    slug: slugPath,
-    title,
-    date: data.created_at || new Date().toISOString(),
-    tags: data.tags || [],
-    content: finalContent,
-    excerpt,
-  };
+  return readNoteFile(filePath, slugPath);
 }
 
 export function getRelatedNotes(currentSlug: string, tags: string[]): Note[] {
-  if (!tags || tags.length === 0) return [];
+  if (!tags.length) {
+    return [];
+  }
 
-  const allNotes = getAllNotes();
-
-  return allNotes
-    .filter((note) => {
-      // Exclude current note
-      if (note.slug === currentSlug) return false;
-      // Check for matching tags
-      return note.tags.some((tag) => tags.includes(tag));
-    })
+  return getAllNotes()
+    .filter((note) => note.slug !== currentSlug && note.tags.some((tag) => tags.includes(tag)))
     .sort((a, b) => {
-      // Sort by number of matching tags
       const aMatches = a.tags.filter((tag) => tags.includes(tag)).length;
       const bMatches = b.tags.filter((tag) => tags.includes(tag)).length;
       return bMatches - aMatches;
     })
     .slice(0, 3);
+}
+
+export function getReadingTime(content: string) {
+  const plainText = content
+    .replace(/`{3}[\s\S]*?`{3}/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/<[^>]*>/g, "")
+    .replace(/[#>*_[\]()~`-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const wordCount = plainText ? plainText.split(" ").length : 0;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
+
+  return {
+    minutes,
+    label: `${minutes} min read`,
+    wordCount,
+  };
+}
+
+export function getAdjacentNotes(currentSlug: string): AdjacentNotes {
+  const notes = getAllNotes();
+  const currentIndex = notes.findIndex((note) => note.slug === currentSlug);
+
+  if (currentIndex === -1) {
+    return { previous: null, next: null };
+  }
+
+  return {
+    previous: notes[currentIndex + 1] ?? null,
+    next: notes[currentIndex - 1] ?? null,
+  };
 }
