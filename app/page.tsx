@@ -21,6 +21,7 @@ export default function Home() {
             name: siteConfig.author,
             alternateName: "alipnf",
             jobTitle: "Frontend Developer",
+            description: siteConfig.description,
             url: siteConfig.url,
             sameAs: siteConfig.sameAs,
             knowsAbout: ["React", "Next.js", "TypeScript", "Frontend Development", "Responsive UI", "REST API Integration"],
