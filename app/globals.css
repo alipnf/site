@@ -105,6 +105,7 @@ input:focus-visible {
   transform: scaleX(0);
   transform-origin: left;
   will-change: transform;
+  width: 100%;
   z-index: 1000;
 }
 

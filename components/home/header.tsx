@@ -61,9 +61,11 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
           aria-expanded={navOpen}
           onClick={() => setNavOpen(!navOpen)}
         >
-          <motion.span animate={navOpen ? { rotate: 45, y: 12 } : { rotate: 0, y: 0 }} className="absolute inset-x-0 top-0 h-px bg-text-primary" />
-          <motion.span animate={navOpen ? { opacity: 0 } : { opacity: 1 }} className="absolute inset-x-0 top-1/2 h-px bg-text-primary" />
-          <motion.span animate={navOpen ? { rotate: -45, y: -12 } : { rotate: 0, y: 0 }} className="absolute inset-x-0 top-full h-px bg-text-primary" />
+          <span className="absolute inset-0 m-auto h-6 w-6" aria-hidden="true">
+            <motion.span animate={navOpen ? { rotate: 45, y: 12 } : { rotate: 0, y: 0 }} className="absolute inset-x-0 top-0 h-px bg-text-primary" />
+            <motion.span animate={navOpen ? { opacity: 0 } : { opacity: 1 }} className="absolute inset-x-0 top-1/2 h-px bg-text-primary" />
+            <motion.span animate={navOpen ? { rotate: -45, y: -12 } : { rotate: 0, y: 0 }} className="absolute inset-x-0 top-full h-px bg-text-primary" />
+          </span>
         </button>
 
         <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
