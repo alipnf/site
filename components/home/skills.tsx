@@ -9,7 +9,7 @@ export function Skills() {
   return (
     <Section id="skills">
       <Container>
-        <Eyebrow index="04" label="Skills System" />
+        <Eyebrow index="05" label="Skills System" />
         <SectionHeading className="mb-14">A technical index, not a sticker sheet.</SectionHeading>
 
         <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} className="grid gap-px border border-border-soft bg-border-soft sm:grid-cols-2 lg:grid-cols-4">

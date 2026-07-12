@@ -13,7 +13,7 @@ export function Notes() {
       <Container>
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <Eyebrow index="05" label="Notes" />
+            <Eyebrow index="06" label="Notes" />
             <SectionHeading>Technical Notes</SectionHeading>
           </div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="max-w-120 leading-[1.6] text-text-secondary">

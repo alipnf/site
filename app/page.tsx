@@ -1,6 +1,7 @@
 import { About } from "@/components/home/about";
 import { ExperienceLog } from "@/components/home/experience-log";
 import { Footer } from "@/components/home/footer";
+import { GitHubActivity } from "@/components/home/github-activity";
 import { HomeShell } from "@/components/home/home-shell";
 import { Hero } from "@/components/home/hero";
 import { Marquee } from "@/components/home/marquee";
@@ -8,9 +9,12 @@ import { Notes } from "@/components/home/notes";
 import { Projects } from "@/components/home/projects";
 import { Skills } from "@/components/home/skills";
 import { JsonLd } from "@/components/json-ld";
+import { getGitHubActivity, getGitHubContributions } from "@/lib/github";
 import { siteConfig } from "@/lib/site";
 
-export default function Home() {
+export default async function Home() {
+  const [activity, contributions] = await Promise.all([getGitHubActivity(), getGitHubContributions()]);
+
   return (
     <>
       <JsonLd
@@ -46,6 +50,7 @@ export default function Home() {
           <About />
           <Projects />
           <ExperienceLog />
+          <GitHubActivity activity={activity} contributions={contributions} />
           <Skills />
           <Notes />
           <Footer />
