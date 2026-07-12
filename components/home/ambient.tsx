@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-export function Ambient({ scrollProgress }: { scrollProgress: number }) {
+export function Ambient() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
@@ -61,13 +62,40 @@ export function Ambient({ scrollProgress }: { scrollProgress: number }) {
     };
   }, []);
 
+  useEffect(() => {
+    let frame = 0;
+
+    const updateProgress = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const progress = max > 0 ? window.scrollY / max : 0;
+
+      progressRef.current?.style.setProperty("transform", `scaleX(${progress})`);
+      frame = 0;
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-grid" aria-hidden="true" />
       <div className="bg-noise" aria-hidden="true" />
       <div className="cursor-dot" ref={dotRef} aria-hidden="true" />
       <div className="cursor-ring" ref={ringRef} aria-hidden="true" />
-      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
+       <div className="scroll-progress" ref={progressRef} aria-hidden="true" />
     </>
   );
 }

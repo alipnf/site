@@ -41,8 +41,10 @@ export function Projects() {
     let frame = 0;
 
     const getClosestProject = () => {
+      if (window.innerWidth < 1280) return null;
+
       const cardEls = Array.from(document.querySelectorAll<HTMLElement>(".project-card"));
-      if (!cardEls.length || window.innerWidth < 1280) return null;
+      if (!cardEls.length) return null;
 
       const viewportCenter = window.innerHeight * 0.5;
       return cardEls.reduce<{ distance: number; index: number }>(

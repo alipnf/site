@@ -71,7 +71,9 @@ export function PageTransition({ children }: PropsWithChildren) {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname, shouldReduceMotion]);
 
-  if (shouldReduceMotion) {
+  // The homepage has its own entrance treatment; avoid animating the whole page
+  // while its Hero is also hydrating and animating.
+  if (shouldReduceMotion || pathname === "/") {
     return <>{children}</>;
   }
 

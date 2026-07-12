@@ -7,7 +7,6 @@ import { Header } from "./header";
 export function HomeShell({ children }: PropsWithChildren) {
   const [navOpen, setNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     let frame = 0;
@@ -15,10 +14,6 @@ export function HomeShell({ children }: PropsWithChildren) {
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
         setIsScrolled(window.scrollY > 40);
-
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - doc.clientHeight;
-        setScrollProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
 
         frame = 0;
       });
@@ -37,7 +32,7 @@ export function HomeShell({ children }: PropsWithChildren) {
 
   return (
     <>
-      <Ambient scrollProgress={scrollProgress} />
+      <Ambient />
       <Header isScrolled={isScrolled} navOpen={navOpen} setNavOpen={setNavOpen} />
       {children}
     </>
