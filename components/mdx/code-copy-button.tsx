@@ -24,7 +24,7 @@ export function CodeCopyButton({ code }: CodeCopyButtonProps) {
     <button
       type="button"
       onClick={handleCopy}
-      className="border border-border-soft bg-bg-primary/90 p-2 text-text-muted opacity-0 transition group-hover:opacity-100 hover:border-border-strong hover:text-text-primary focus:opacity-100"
+      className="min-h-11 min-w-11 border border-border-soft bg-bg-primary/90 p-2 text-text-muted opacity-100 transition hover:border-border-strong hover:text-text-primary md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100"
       aria-label="Copy code"
     >
       {isCopied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}

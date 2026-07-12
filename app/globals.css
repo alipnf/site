@@ -218,6 +218,13 @@ body.cursor-view .cursor-ring {
   width: 14px;
 }
 
+.markdown-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 @keyframes marqueeScroll {
   from {
     transform: translateX(0);

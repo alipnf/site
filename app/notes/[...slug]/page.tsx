@@ -154,11 +154,12 @@ export default async function NotePage({ params }: NotePageProps) {
         </header>
 
         <div
-          className="mt-12 max-w-none text-text-secondary
+          className="markdown-content mt-12 max-w-none break-words text-text-secondary
             [&_a]:text-text-primary [&_a]:underline [&_a]:decoration-border-strong [&_a]:underline-offset-4 [&_a:hover]:decoration-text-primary
             [&_blockquote]:border-l [&_blockquote]:border-border-strong [&_blockquote]:pl-5 [&_blockquote]:text-text-primary
             [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:tracking-[-0.04em] [&_h2]:text-text-primary
             [&_h3]:mb-3 [&_h3]:mt-9 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:tracking-[-0.03em] [&_h3]:text-text-primary
+            [&_img]:h-auto [&_img]:max-w-full
             [&_li]:my-2 [&_li>code]:border [&_li>code]:border-border-soft [&_li>code]:bg-bg-elevated [&_li>code]:px-1.5 [&_li>code]:py-0.5 [&_li>code]:font-mono [&_li>code]:text-[0.9em] [&_li>code]:text-text-primary
             [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-5 [&_p]:leading-8 [&_p>code]:border [&_p>code]:border-border-soft [&_p>code]:bg-bg-elevated [&_p>code]:px-1.5 [&_p>code]:py-0.5 [&_p>code]:font-mono [&_p>code]:text-[0.9em] [&_p>code]:text-text-primary
             [&_strong]:text-text-primary [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6"

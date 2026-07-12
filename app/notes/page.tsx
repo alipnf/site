@@ -43,7 +43,7 @@ export default function NotesPage() {
         <div className="mb-14 grid gap-8 border-y border-border-soft py-10 lg:grid-cols-[1fr_0.65fr] lg:items-end">
           <div>
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-text-muted">Notes Archive</p>
-            <h1 className="max-w-4xl text-[clamp(3.2rem,9vw,8.8rem)] font-bold leading-[0.85] tracking-[-0.08em]">Technical Notes</h1>
+            <h1 className="max-w-4xl text-[clamp(2.6rem,6vw,6.4rem)] font-bold leading-[0.88] tracking-[-0.075em]">Technical Notes</h1>
           </div>
           <p className="max-w-xl text-base leading-7 text-text-secondary md:text-lg">
             Catatan teknis seputar frontend, Linux, Git, PostgreSQL, TypeScript, dan debugging. Beberapa isinya masih berupa learning log, jadi CMIIW kalau ada yang ngaco.

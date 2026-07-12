@@ -55,7 +55,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
           alipnf
         </a>
         <button
-          className="relative z-[930] h-6 w-8 md:hidden"
+          className="relative z-[930] h-11 w-11 md:hidden"
           type="button"
           aria-label="Toggle navigation"
           aria-expanded={navOpen}
@@ -93,7 +93,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
                   initial={{ opacity: 0, x: 18 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.08 + index * 0.04, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className={navClass}
+                  className={`${navClass} flex min-h-11 items-center`}
                   href={link.href}
                   key={link.href}
                   onClick={handleSectionClick(link.href)}

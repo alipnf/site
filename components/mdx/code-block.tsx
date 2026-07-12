@@ -29,7 +29,7 @@ export async function CodeBlock({ code, language = "text" }: CodeBlockProps) {
         <CodeCopyButton code={code.trimEnd()} />
       </div>
       <div
-        className="code-highlight overflow-x-auto text-sm leading-7 [&_pre]:!m-0 [&_pre]:!bg-transparent [&_pre]:!p-5 [&_pre]:font-mono [&_pre]:leading-7"
+        className="code-highlight overflow-x-auto text-sm leading-7 [&_code]:block [&_code]:w-max [&_pre]:!m-0 [&_pre]:min-w-full [&_pre]:!bg-transparent [&_pre]:!p-5 [&_pre]:font-mono [&_pre]:leading-7"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
