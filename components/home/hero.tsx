@@ -43,7 +43,7 @@ export function Hero() {
             <ButtonLink href="#projects" variant="primary">
               View Projects
             </ButtonLink>
-            <ButtonLink href="/cv/alipnf_cv.pdf">
+            <ButtonLink href="/cv/Muhammad_Alif_Nur_Firdaus_CV.pdf">
               Download CV
             </ButtonLink>
             <ButtonLink href="#notes">

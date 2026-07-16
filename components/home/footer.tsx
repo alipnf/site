@@ -36,7 +36,7 @@ export function Footer() {
             <div className="font-mono text-xs uppercase tracking-[0.08em] text-text-muted">Frontend Developer</div>
           </div>
           <FooterCol title="Socials" items={[{ href: "https://github.com/alipnf", label: "GitHub" }, { href: "https://linkedin.com/in/alipnf", label: "LinkedIn" }]} />
-          <FooterCol title="Contact" items={[{ href: "mailto:alipnf@proton.me", label: "alipnf@proton.me" }, { href: "/cv/alipnf_cv.pdf", label: "Download CV" }]} />
+          <FooterCol title="Contact" items={[{ href: "mailto:alipnf@proton.me", label: "alipnf@proton.me" }, { href: "/cv/Muhammad_Alif_Nur_Firdaus_CV.pdf", label: "Download CV" }]} />
         </div>
       </Container>
     </footer>

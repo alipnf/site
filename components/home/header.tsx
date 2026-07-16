@@ -74,7 +74,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
               {link.label}
             </a>
           ))}
-          <a className="border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]" href="/cv/alipnf_cv.pdf">
+          <a className="border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]" href="/cv/Muhammad_Alif_Nur_Firdaus_CV.pdf">
             Download CV
           </a>
         </nav>
@@ -108,7 +108,7 @@ export function Header({ isScrolled, navOpen, setNavOpen }: { isScrolled: boolea
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.24, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="w-fit border border-border-strong px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] transition-colors hover:border-text-primary hover:bg-text-primary hover:!text-[#050505]"
-                href="/cv/alipnf_cv.pdf"
+                href="/cv/Muhammad_Alif_Nur_Firdaus_CV.pdf"
                 onClick={() => setNavOpen(false)}
               >
                 Download CV
