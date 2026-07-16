@@ -6,9 +6,12 @@ export const stackItems = [
   "SUPABASE",
   "FIREBASE",
   "ZUSTAND",
-  "MDX",
   "RESPONSIVE UI",
-  "API INTEGRATION",
+  "PRISMA",
+  "POSTGRESQL",
+  "MYSQL",
+  "VITEST",
+  "PLAYWRIGHT",
 ];
 
 export const projects = [
@@ -16,7 +19,7 @@ export const projects = [
     num: "01",
     id: "layar-digi",
     title: "Layar Digi",
-    desc: "A responsive online ticket booking platform covering movie browsing, ticket reservation, studio booking, booking status verification, payment status updates, and operational dashboard workflows.",
+    desc: "A responsive ticket-booking platform covering movie browsing, schedule and seat selection, booking submission, payment-status updates, and studio reservations with date, time-slot, and form validation. Also includes an operational dashboard for transactions, revenue, occupancy, kiosks, failed payments, schedules, and device status.",
     stack: [
       "React",
       "Next.js",
@@ -36,7 +39,7 @@ export const projects = [
     num: "02",
     id: "isyara",
     title: "Isyara",
-    desc: "A BISINDO learning web app with real-time hand detection and in-browser A-Z gesture classification, structured learning units, quiz mode, progress tracking, gamification, leaderboard, Supabase authentication, and lesson management.",
+    desc: "A BISINDO learning web app with real-time in-browser A-Z gesture classification using a TensorFlow.js MLP model and MediaPipe Hands landmarks, achieving 97.77% test accuracy. Includes structured learning units, quizzes, progress tracking, gamification, and a leaderboard.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -54,7 +57,7 @@ export const projects = [
     num: "03",
     id: "planify",
     title: "Planify",
-    desc: "A course scheduling web app with course management, manual scheduling, AI-assisted timetable generation, schedule saving, and shareable schedule links.",
+    desc: "A course scheduling web app with course management, manual scheduling, Gemini API-powered timetable generation, schedule saving, and shareable schedule links.",
     stack: [
       "React",
       "Next.js",
@@ -62,6 +65,7 @@ export const projects = [
       "Zustand",
       "Supabase",
       "shadcn/ui",
+      "Gemini API",
     ],
     image: "/projects/planify.webp",
     demoUrl: "",
@@ -98,11 +102,11 @@ export const projects = [
 
 export const experience = [
   {
-    period: "Feb - Aug 2026",
+    period: "Feb 2026 - Present",
     title: "Frontend Developer Intern",
     org: "PT WIR ASIA Tbk",
     stack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "REST API"],
-    desc: "Developed frontend interfaces for Layar Digi across a customer-facing booking app and internal admin dashboard, covering movie browsing, schedule and seat selection, payment status updates, booking submission, reservation workflows, REST API consumption, and client-side async state handling.",
+    desc: "Developing Layar Digi's customer booking app and admin dashboard, including ticket flows, studio reservations, reporting, schedules, device status, and operational data management. Integrated REST APIs and implemented authentication, refresh-token queueing, and periodic payment-status updates.",
   },
   {
     period: "Jan - Apr 2025",
@@ -120,10 +124,10 @@ export const experience = [
   },
   {
     period: "Sep 2022 - Feb 2026",
-    title: "Bachelor's Degree in Informatics Engineering",
+    title: "Bachelor's Degree in Informatics Engineering (S.Kom.)",
     org: "Universitas Muria Kudus",
     stack: ["GPA 3.89 / 4.00"],
-    desc: "Graduated with a GPA of 3.89 / 4.00 and published research on real-time web-based BISINDO alphabet recognition using MediaPipe and MLP.",
+    desc: "Graduated with a GPA of 3.89 / 4.00. Published “Real-Time Web-Based BISINDO Alphabet Recognition Using MediaPipe and MLP” in SCAN: Jurnal Teknologi Informasi dan Komunikasi Vol. 21 No. 1 (2026).",
   },
 ];
 
@@ -132,18 +136,15 @@ export const skills = [
   { label: "Programming", names: "JavaScript, TypeScript" },
   {
     label: "Styling & UI",
-    names: "Tailwind CSS, Bootstrap, shadcn/ui, DaisyUI, Preline",
+    names: "CSS, Tailwind CSS, shadcn/ui, DaisyUI",
   },
   { label: "State Management", names: "Zustand, Redux" },
+  { label: "Database & ORM", names: "Prisma ORM, PostgreSQL, MySQL" },
   { label: "Backend / BaaS", names: "Supabase, Firebase" },
-  { label: "API", names: "REST API Integration" },
+  { label: "Testing", names: "Vitest, Playwright" },
   {
     label: "Tools",
     names: "Git, GitHub, Postman, Figma, Taiga, Trello, Linux",
-  },
-  {
-    label: "Soft Skills",
-    names: "Communication, Teamwork, Problem-Solving, Adaptability",
   },
 ];
 
